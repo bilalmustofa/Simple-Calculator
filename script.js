@@ -24,6 +24,9 @@ function clearResult() {
 
 // Calculate the result
 function calculateResult() {
+  if(inputField.value === ""){
+    inputField.value = "0";
+  }
   inputField.value = eval(inputField.value); // eval solve any mathematical problem through user input
 }
 
@@ -40,6 +43,14 @@ function appendValue(buttonValue) {
 
   // prevent starting with operator
   if (inputField.value === "" && operators.includes(buttonValue)) {
+    return;
+  }
+  // prevent repeating zeros at first place
+  if(inputField.value === "0" && buttonValue === '0') {
+    return;
+  }
+  // prevent repeating double zeros at first place
+  if(inputField.value === "" && buttonValue === '00') {
     return;
   }
   inputField.value += buttonValue;
